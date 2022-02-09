@@ -12,35 +12,30 @@
 | last_name          |    string    | null: false                    |
 | kana_first_name    |    string    | null: false                    |
 | kana_last_name     |    string    | null: false                    |
-| birthday_year      |    integer   | null: false                    |
-| birthday_month     |    integer   | null: false                    |
-| birthday_day       |    integer   | null: false                    |
+| birth_day          |    date      | null: false                    |
 
 ### Association
 - has_many :products
-- has_many :buys
-- has_many :products, through: :buys 
+- has_many :users
 
 
 
 
 ## productsテーブル
 
-|       Column       |     Type     |             Options            |
-| ------------------ | ------------ | ------------------------------ |
-| product_title      |    string    | null: false                    |
-| product_concept    |     text     | null: false                    |
-| product_category   |    integer   | null: false                    |
-| product_situation  |    integer   | null: false                    |
-| send_load          |    integer   | null: false                    |
-| send_source_area   |    integer   | null: false                    |
-| send_day           |    integer   | null: false                    |
-| product_price      |    integer   | null: false                    |
-| user               |  references  | null: false  foreign_key: true |
+|        Column        |     Type     |             Options            |
+| -------------------- | ------------ | ------------------------------ |
+| product_title        |    string    | null: false                    |
+| product_concept      |     text     | null: false                    |
+| product_category_id  |    integer   | null: false                    |
+| product_situation_id |    integer   | null: false                    |
+| send_load_id         |    integer   | null: false                    |
+| send_source_area_id  |    integer   | null: false                    |
+| send_day_id          |    integer   | null: false                    |
+| product_price        |    integer   | null: false                    |
+| user                 |  references  | null: false  foreign_key: true |
 
 ### Association
-- has_one :buy
-- has_one :user through: :buys
 - belongs_to :user
 
 
@@ -51,10 +46,11 @@
 |       Column       |     Type     |             Options            |
 | ------------------ | ------------ | ------------------------------ |
 | post_code          |    string    | null: false                    |
-| prefecture         |    integer   | null: false                    |
+| prefecture_id      |    integer   | null: false                    |
 | city               |    string    | null: false                    |
 | block              |    string    | null: false                    |
 | building           |    string    |                                |
+| phone_number       |    string    | null: false                    |
 | buy                |  references  | null: false  foreign_key: true |
 
 ### Association
@@ -68,6 +64,7 @@
 |       Column       |     Type     |             Options            |
 | ------------------ | ------------ | ------------------------------ |
 | product            |  references  | null: false  foreign_key: true |
+| user               |  references  | null: false  foreign_key: true |
 
 ### Association
 - has_one :send
