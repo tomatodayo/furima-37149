@@ -12,4 +12,7 @@ class User < ApplicationRecord
   validates :kana_last_name,  presence: true
   validates :birth_day,       presence: true
 
+  has_many :products
+  has_many :users
+  
 end
