@@ -14,8 +14,11 @@ class User < ApplicationRecord
 
   PASSWORD_REGEX = /(?=.*?[a-zA-Z])(?=.*?[\d])/i.freeze
   validates_format_of :password, with: PASSWORD_REGEX
-
-  has_many :products
-  has_many :users
+  NAME = /[ぁ-んァ-ヶ一-龥々ー]/.freeze
+  validates_format_of :first_name, with: NAME
+  validates_format_of :last_name, with: NAME
+  KANA_NAME = /[ァ-ヶ]/.freeze
+  validates_format_of :kana_first_name, with: KANA_NAME
+  validates_format_of :kana_last_name, with: KANA_NAME
   
 end
