@@ -1,7 +1,14 @@
 class Product < ApplicationRecord
-  
+
   belongs_to :user
   has_one_attached :image
+
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :area
+  belongs_to :category
+  belongs_to :day
+  belongs_to :load
+  belongs_to :situation
 
   validates :product_title,        presence: true
   validates :product_concept,      presence: true
