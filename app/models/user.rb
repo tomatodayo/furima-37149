@@ -20,5 +20,8 @@ class User < ApplicationRecord
   KANA_NAME = /[ァ-ヶー]/.freeze
   validates_format_of :kana_first_name, with: KANA_NAME
   validates_format_of :kana_last_name, with: KANA_NAME
+
+
+  has_many :products
   
 end
