@@ -10,19 +10,17 @@ class Product < ApplicationRecord
   belongs_to :load
   belongs_to :situation
 
-  validates :product_title,        presence: true
-  validates :product_concept,      presence: true
-  validates :product_category_id,  presence: true
-  validates :product_situation_id, presence: true
-  validates :send_load_id,         presence: true
-  validates :send_source_area_id,  presence: true
-  validates :send_day_id,          presence: true
-  validates :product_price,        presence: true
+  validates :product_title,        presence: true, length: { minimum: 1, maximum: 40 }
+  validates :product_concept,      presence: true, length: { minimum: 1, maximum: 1000 }
+  validates :product_category_id,  presence: true, numericality: { other_than: 1, message: "can't be blank"}
+  validates :product_situation_id, presence: true, numericality: { other_than: 1, message: "can't be blank"}
+  validates :send_load_id,         presence: true, numericality: { other_than: 1, message: "can't be blank"}
+  validates :send_source_area_id,  presence: true, numericality: { other_than: 1, message: "can't be blank"} 
+  validates :send_day_id,          presence: true, numericality: { other_than: 1, message: "can't be blank"}
+  validates :product_price,        presence: true, numericality: { in: 300..9999999 }
   validates :image,                presence: true
-  validates :area_id, numericality: { other_than: 1, message: "can't be blank"} 
-  validates :category_id, numericality: { other_than: 1, message: "can't be blank"} 
-  validates :day_id, numericality: { other_than: 1, message: "can't be blank"} 
-  validates :load_id, numericality: { other_than: 1, message: "can't be blank"} 
-  validates :situation_id, numericality: { other_than: 1, message: "can't be blank"} 
+  
+  PRODUCT_PRICE = /[0-9]/i.freeze
+  validates_format_of :product_price, with: PRODUCT_PRICE
 
 end
