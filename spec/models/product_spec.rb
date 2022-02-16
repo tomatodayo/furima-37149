@@ -92,6 +92,17 @@ RSpec.describe Product, type: :model do
         @product.valid? 
         expect(@product.errors.full_messages).to include("Product price can't be blank", "Product price is not a number", "Product price is invalid")
       end
+      it 'product_priceが300円以下だと投稿できない' do
+        @product.product_price = 200
+        @product.valid? 
+        expect(@product.errors.full_messages).to include("Product price must be greater than or equal to 300")
+      end
+      it 'product_priceが9999999円以下だと投稿できない' do
+        @product.product_price = 10000000
+        binding.pry
+        @product.valid? 
+        expect(@product.errors.full_messages).to include("Product price must be less than or equal to 9999999")
+      end
       it 'userが紐付いていないと投稿できない' do
         @product.user = nil
         @product.valid?

@@ -17,7 +17,7 @@ class Product < ApplicationRecord
   validates :send_load_id,         presence: true, numericality: { other_than: 1, message: "can't be blank"}
   validates :send_source_area_id,  presence: true, numericality: { other_than: 1, message: "can't be blank"} 
   validates :send_day_id,          presence: true, numericality: { other_than: 1, message: "can't be blank"}
-  validates :product_price,        presence: true, numericality: { in: 300..9999999 }
+  validates :product_price,        presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
   validates :image,                presence: true
   
   PRODUCT_PRICE = /[0-9]/i.freeze

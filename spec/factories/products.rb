@@ -7,8 +7,7 @@ FactoryBot.define do
     send_load_id { 2 }
     send_source_area_id { 2 }
     send_day_id { 2 }
-    price = Faker::Commerce.price
-    product_price {price}
+    product_price {Faker::Number.between(from: 300, to: 9999999)}
 
     association :user
 
