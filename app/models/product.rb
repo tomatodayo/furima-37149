@@ -4,11 +4,11 @@ class Product < ApplicationRecord
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :area
-  belongs_to :category
-  belongs_to :day
-  belongs_to :load
-  belongs_to :situation
+  belongs_to :product_category
+  belongs_to :product_situation
+  belongs_to :send_day
+  belongs_to :send_load
+  belongs_to :send_source_area
 
   validates :product_title,        presence: true, length: { minimum: 1, maximum: 40 }
   validates :product_concept,      presence: true, length: { minimum: 1, maximum: 1000 }

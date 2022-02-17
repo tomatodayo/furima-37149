@@ -1,4 +1,4 @@
-class Situation < ActiveHash::Base
+class ProductSituation < ActiveHash::Base
 
   self.data = [
     { id: 1, name: '--' }, 
