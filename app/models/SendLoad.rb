@@ -1,4 +1,4 @@
-class Load < ActiveHash::Base
+class SendLoad < ActiveHash::Base
 
   self.data = [
     { id: 1, name: '--' }, 
