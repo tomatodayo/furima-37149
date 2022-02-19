@@ -26,16 +26,13 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
   end
 
   def edit
   #(「自身が出品した売却済み商品の商品情報編集ページへ遷移しようとすると、トップページに遷移すること。」は商品購入機能の時に実装する)
-    @product = Product.find(params[:id])
   end
 
   def update
-    @product = Product.find(params[:id])
     if @product.update(product_params)
       redirect_to product_path(@product)
     else
