@@ -1,11 +1,13 @@
 class BuysController < ApplicationController
 
   def index
-    @buy_send = BuySend.new
+    @buy_send = BuyAddress.new
+    @product = Product.find(params[:product_id]) 
   end
 
   def create
-    @buy_send = BuySend.new(buy_params)
+    @product = Product.find(params[:product_id])
+    @buy_send = BuyAddress.new(buy_params)
     if @buy_send.valid?
       @buy_send.save
       redirect_to root_path
@@ -16,9 +18,8 @@ class BuysController < ApplicationController
 
   private
 
-  def donation_params
-    params.require(:buy_send).permit(:post_code, :prefecture_id, :city, :block, :building, :phone_number, :product_price).merge(user_id: current_user.id, product_id: current_product.id)
+  def buy_params
+    params.require(:buy_address).permit(:post_code, :prefecture_id, :city, :block, :building, :phone_number).merge(user_id: current_user.id, product_id: @product.id)
   end
-
 
 end
