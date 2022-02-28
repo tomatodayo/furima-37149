@@ -1,7 +1,7 @@
 class BuysController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :move_to_index, only: [:index, :create]
-  before_action :set_prototype, only: [:index, :create]
+  before_action :set_product, only: [:index, :create]
 
   def index
     @buy_send = BuyAddress.new
@@ -40,7 +40,7 @@ class BuysController < ApplicationController
     redirect_to root_path if current_user == @product.user
   end
 
-  def set_prototype
+  def set_product
     @product = Product.find(params[:product_id])
   end
 
