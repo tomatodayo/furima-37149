@@ -1,4 +1,6 @@
 class BuysController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :create]
+  before_action :move_to_index, only: [:index, :create]
 
   def index
     @buy_send = BuyAddress.new
@@ -31,6 +33,12 @@ class BuysController < ApplicationController
           card: buy_params[:token],    
           currency: 'jpy'                 
         )
+  end
+
+  def move_to_index
+    @product = Product.find(params[:product_id])
+    redirect_to root_path unless @product.buy == nil
+    redirect_to root_path if current_user == @product.user
   end
 
 end
