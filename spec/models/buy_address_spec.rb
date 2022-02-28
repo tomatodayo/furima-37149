@@ -70,6 +70,18 @@ RSpec.describe BuyAddress, type: :model do
         expect(@buy_address.errors.full_messages).to include("Phone number is invalid")
         sleep 0.1
       end
+      it 'phone_numberが10桁未満だと保存できないこと' do
+        @buy_address.phone_number = "123456789"
+        @buy_address.valid?
+        expect(@buy_address.errors.full_messages).to include("Phone number is invalid")
+        sleep 0.1
+      end
+      it 'phone_numberが11桁以上だと保存できないこと' do
+        @buy_address.phone_number = "123456789012"
+        @buy_address.valid?
+        expect(@buy_address.errors.full_messages).to include("Phone number is invalid")
+        sleep 0.1
+      end
       it 'user_idが紐付いていないと保存できないこと' do
         @buy_address.user_id = nil
         @buy_address.valid?
