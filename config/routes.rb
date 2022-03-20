@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :products do
     resources :buys, only: [:index, :create ]
+    resources :comments, only: :create
   end
 
 end
