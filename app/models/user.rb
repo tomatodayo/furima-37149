@@ -24,5 +24,6 @@ class User < ApplicationRecord
 
   has_many :products
   has_many :buys
+  has_many :comments
   
 end
