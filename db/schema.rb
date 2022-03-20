@@ -56,11 +56,13 @@ ActiveRecord::Schema.define(version: 2022_03_20_132836) do
   end
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.text "text"
-    t.integer "user_id"
-    t.integer "item_id"
+    t.text "text", null: false
+    t.bigint "user_id", null: false
+    t.bigint "product_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_comments_on_product_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -113,6 +115,8 @@ ActiveRecord::Schema.define(version: 2022_03_20_132836) do
   add_foreign_key "addresses", "buys"
   add_foreign_key "buys", "products"
   add_foreign_key "buys", "users"
+  add_foreign_key "comments", "products"
+  add_foreign_key "comments", "users"
   add_foreign_key "products", "users"
   add_foreign_key "sends", "buys"
 end
