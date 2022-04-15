@@ -17,6 +17,7 @@
 ### Association
 - has_many :products
 - has_many :buys
+- has_many :comments
 
 
 
@@ -38,6 +39,7 @@
 ### Association
 - belongs_to :user
 - has_one :buy
+- has_many :comments
 
 
 
@@ -71,3 +73,18 @@
 - has_one :send
 - belongs_to :product
 - belongs_to :user
+
+
+
+
+## commentsテーブル
+
+|       Column       |     Type     |             Options            |
+| ------------------ | ------------ | ------------------------------ |
+| text               |     text     | null: false                    |
+| product            |  references  | null: false  foreign_key: true |
+| user               |  references  | null: false  foreign_key: true |
+
+### Association
+- belongs_to :user
+- belongs_to :product

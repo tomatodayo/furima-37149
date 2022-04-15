@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_prototype, except: [:index, :new, :create]
+  before_action :set_prototype, except: [:index, :new, :create ]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :move_to_index, only: [:edit, :update, :destroy]
 
@@ -26,6 +26,9 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @product = Product.find(params[:id])
+    @comments = @product.comments.includes(:user)
+    @comment = Comment.new
   end
 
   def edit
