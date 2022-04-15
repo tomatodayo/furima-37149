@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   root to: "products#index"
 
   resources :products do
+    resources :comments, only: :create 
     resources :buys, only: [:index, :create ]
-    resources :comments, only: :create
   end
 
 end
